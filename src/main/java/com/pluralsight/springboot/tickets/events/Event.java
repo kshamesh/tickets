@@ -1,13 +1,79 @@
 package com.pluralsight.springboot.tickets.events;
 
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
-public record Event (
-        int id,
-        String name,
-        Organizer organizer,
-        Venue venue,
-        LocalDate startEnd,
-        LocalDate endDate){
+@Entity
+@Table(name = "events")
+public class Event {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(nullable = false)
+    private String name;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "organizer_id", referencedColumnName = "id", nullable = false)
+    private Organizer organizer;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "venue_id", referencedColumnName = "id", nullable = false)
+    private Venue venue;
+
+    @Column
+    private LocalDate startEnd;
+
+    @Column
+    private LocalDate endDate;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Organizer getOrganizer() {
+        return organizer;
+    }
+
+    public void setOrganizer(Organizer organizer) {
+        this.organizer = organizer;
+    }
+
+    public Venue getVenue() {
+        return venue;
+    }
+
+    public void setVenue(Venue venue) {
+        this.venue = venue;
+    }
+
+    public LocalDate getStartEnd() {
+        return startEnd;
+    }
+
+    public void setStartEnd(LocalDate startEnd) {
+        this.startEnd = startEnd;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
 }
