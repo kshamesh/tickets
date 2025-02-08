@@ -1,6 +1,5 @@
 package com.pluralsight.springboot.tickets.events;
 
-
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -8,6 +7,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "events")
 public class Event {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -24,7 +24,7 @@ public class Event {
     private Venue venue;
 
     @Column
-    private LocalDate startEnd;
+    private LocalDate startDate;
 
     @Column
     private LocalDate endDate;
@@ -61,12 +61,12 @@ public class Event {
         this.venue = venue;
     }
 
-    public LocalDate getStartEnd() {
-        return startEnd;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public void setStartEnd(LocalDate startEnd) {
-        this.startEnd = startEnd;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
 
     public LocalDate getEndDate() {
